@@ -13,51 +13,6 @@ Link para backend
  - []()
  
  
-## Funcionalidades
-
-- ainda em construção
-
-
-## Referência
-
- - []()
-
-## Rodando os testes
-
-Para rodar os testes, rode o seguinte comando
-
-```bash
-  ------ainda em construcao ----
-```
-
-
-## Documentação da API
-
-*****
-Construindo as rotas da api
-****
-
-#### Retorna todos os itens
-
-```http
-  GET /api
-```
-
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `` | `string` | **Obrigatório**.|
-
-#### Retorna um item
-
-```http
-  GET 
-```
-
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `id`      | `string` | **Obrigatório**.  |
-
-
 
 ## Autores
 
