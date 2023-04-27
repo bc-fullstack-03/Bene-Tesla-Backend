@@ -5,14 +5,10 @@
 construindo o sistema
 *****
 
-## Backend
+## :computer: Backend
 ****
-Link para backend
+Projeto Backend - [Backend](https://github.com/bc-fullstack-03/Connect-Now/edit/main/README.md)
 ****
-
- - []()
- 
- 
 
 ## Autores
 
