@@ -7,7 +7,7 @@ construindo o sistema
 
 ## :computer: Backend
 ****
-Projeto Backend - [Backend](https://github.com/bc-fullstack-03/Connect-Now/edit/main/README.md)
+Projeto Backend - [Backend](https://github.com/bc-fullstack-03/Bene_Connect-Now_backend/tree/main/backend)
 ****
 
 ## Autores
