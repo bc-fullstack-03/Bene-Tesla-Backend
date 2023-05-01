@@ -30,12 +30,15 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
     /*
-     * @GetMapping("/teste")
+     * @GetMapping("")
      * public ResponseEntity<String> teste(){
      * return ResponseEntity.status(HttpStatus.CREATED).body("Testando o metodo get da sysmap api");
      * }
      */
-    
+    @GetMapping("/teste2")//http://localhost:8082/api/v1/user/teste2
+     public ResponseEntity<String> teste(){
+     return ResponseEntity.status(HttpStatus.CREATED).body("Testando o metodo get da sysmap api");
+     }  
     
         
 }
