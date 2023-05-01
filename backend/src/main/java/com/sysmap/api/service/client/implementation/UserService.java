@@ -41,8 +41,15 @@ public final class UserService implements IUservice {
     UUID uuid = UUID.fromString(id);
     var queryUser = repo.findById(uuid);
     var user = queryUser.map(u ->
-      new CreateUserResponse(uuid, u.getEmail(), id, u.getAuthor())
+      new CreateUserResponse(
+        u.getId().toString(),
+        u.getName(),
+        u.getEmail(),
+        u.getPassword(),
+        u.getAuthor()
+      )
     );
+    //to String the author
     return user;
   }
 }
