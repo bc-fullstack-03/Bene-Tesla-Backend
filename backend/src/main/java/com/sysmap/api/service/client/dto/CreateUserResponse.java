@@ -11,8 +11,8 @@ public class CreateUserResponse {
   public String email;
   public Author author;
 
-  public CreateUserResponse(UUID id, String name, String email, Author author) {
-    this.id = id;
+  public CreateUserResponse(String string, String name, String email, String password, Author author) {
+    this.id = UUID.fromString(string);
     this.name = name;
     this.email = email;
     this.author = author;

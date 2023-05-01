@@ -18,9 +18,6 @@ public final class UserService implements IUservice {
   private UserRepository repo;
 
   public String createUser(CreateUserRequest request) {
-    /*
-     * Use try catch to handle the exception to save the user in the database.
-     */
     try {
       var author = new Author(request.author);
       var user = new User(
@@ -49,7 +46,6 @@ public final class UserService implements IUservice {
         u.getAuthor()
       )
     );
-    //to String the author
     return user;
   }
 }
