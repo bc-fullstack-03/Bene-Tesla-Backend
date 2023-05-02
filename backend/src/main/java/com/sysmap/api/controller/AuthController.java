@@ -1,10 +1,11 @@
-packege com.sysmap.api.controller;
+package com.sysmap.api.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-    @Autowired
-    private AuthService authService;  
-    //transforma o objeto em json
+    
 
 }
