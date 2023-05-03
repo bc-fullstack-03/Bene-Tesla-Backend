@@ -25,8 +25,34 @@ Apache Kafka: Processamento de Fluxo de dados(Mensageria).
 
 ## Apache Kafka
 
-**Conectando o sistema com o apache kafka utilizando a ferramenta Offset explorer para a visualização de dados em um ambiente gráfico.**
+**Conectando o sistema com o apache kafka utilizando a ferramenta Offset explorer para a visualização de dados em um ambiente gráfico,**Para consumir este serviço criamos a classe:
 
+EventService.java
+
+# Criando um producer:
+
+```
+ @Autowired
+    private KafkaTemplate<String, String> kafka;
+    @Value("${topic.name}")
+    private String topic;
+    public void send(String event) {
+        kafka.send(topic, event);
+    }
+```
+
+
+
+# Criando um consumer
+
+```
+ @KafkaListener(topics = "${topic.name}", groupId = "ms-demo")
+    public void consumer(ConsumerRecord<String, String> event) {
+           System.out.print("Event consumed: " + event.value());
+    }
+```
+
+# Exemplo de consumer usando o Kafka tool:
 
 ![1683131812546](image/Readme/1683131812546.png)
 
