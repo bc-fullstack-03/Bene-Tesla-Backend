@@ -1,21 +1,26 @@
 package com.sysmap.api.service.client.implementation;
 
+import java.util.Optional;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.sysmap.api.model.embedded.Author;
 import com.sysmap.api.model.entities.User;
 import com.sysmap.api.model.repository.UserRepository;
 import com.sysmap.api.service.client.IUservice;
+import com.sysmap.api.service.client.IveEventService;
 import com.sysmap.api.service.client.dto.CreateUserRequest;
 import com.sysmap.api.service.client.dto.CreateUserResponse;
-import java.util.Optional;
-import java.util.UUID;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
 public final class UserService implements IUservice {
 
   @Autowired
   private UserRepository repo;
+  @Autowired
+  private IveEventService eventService;
 
   public String createUser(CreateUserRequest request) {
     try {
@@ -27,9 +32,11 @@ public final class UserService implements IUservice {
         author
       );
       repo.save(user);
+      eventService.send(user.getId().toString());
       return user.getId().toString();
-    } catch (Exception e) {
-      return "Error: " + e.getMessage();
+    }
+    catch (Exception e) {
+      return e.getMessage();
     }
   }
 
@@ -48,4 +55,6 @@ public final class UserService implements IUservice {
     );
     return user;
   }
+  
+  
 }
