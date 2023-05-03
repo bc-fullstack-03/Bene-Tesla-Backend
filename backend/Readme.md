@@ -1,20 +1,20 @@
-
 # Connect-Now
 
-****
+---
+
 Api Backend para a rede social Connect Now(Parrot Sysmap),na construção desta api utilizamos:
 
 Spring Boot: Framework Java de código aberto para a criação de Microsserviços.
 
 Swagger: Documentação da Api(Rest API), para acessar a API Rode o Seu docker e o projeto e se conecte ao seguinte endereço.
+
 ```bash
   http://localhost:8082/swagger-ui/swagger-ui/index.html
 ```
+
 Apache Kafka: Processamento de Fluxo de dados(Mensageria).
 
-
-*****
-
+---
 
 ## Funcionalidades
 
@@ -23,11 +23,18 @@ Apache Kafka: Processamento de Fluxo de dados(Mensageria).
 - Serviço de Mensageria
 - Comunicação backend for frontend(Conceito BFF)
 
+## Apache Kafka
+
+**Conectando o sistema com o apache kafka utilizando a ferramenta Offset explorer para a visualização de dados em um ambiente gráfico.**
+
+
+![1683131812546](image/Readme/1683131812546.png)
 
 ## Referência
 
- - [spring-boot: casadocodigo](https://www.casadocodigo.com.br/products/livro-spring-boot?_pos=2&_sid=6afcf6f89&_ss=r)
+- [spring-boot: casadocodigo](https://www.casadocodigo.com.br/products/livro-spring-boot?_pos=2&_sid=6afcf6f89&_ss=r)
 - [apache Kafka:  casadocodigo](https://www.casadocodigo.com.br/products/livro-apache-kafka?_pos=3&_sid=6afcf6f89&_ss=r)
+
 ## Rodando os testes
 
 Os testes e a imagem do docker(docker pull) irei subir entre sábado e domingo
@@ -38,12 +45,13 @@ Os testes e a imagem do docker(docker pull) irei subir entre sábado e domingo
   ----
 ```
 
-
 ## Documentação da API
 
-*****
+---
+
 Construindo as rotas da api
-****
+
+---
 
 #### Retorna todos o usuário pelo ID
 
@@ -51,31 +59,27 @@ Construindo as rotas da api
   @GetMapping("/{id}")
 ```
 
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `http://localhost:8082/api/v1/user/{id}` | `string` | **Obrigatório ID do Usuario**.|
+| Parâmetro                                 | Tipo       | Descrição                           |
+| :----------------------------------------- | :--------- | :------------------------------------ |
+| `http://localhost:8082/api/v1/user/{id}` | `string` | **Obrigatório ID do Usuario**. |
 
-####  Cadastara um usuario no banco de dados
+#### Cadastara um usuario no banco de dados
 
 ```http
   GET 
 ```
 
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `http://localhost:8082/api/v1/user/create`      | `string` | ** **.  |
-
-
+| Parâmetro                                   | Tipo       | Descrição |
+| :------------------------------------------- | :--------- | :---------- |
+| `http://localhost:8082/api/v1/user/create` | `string` | ** **.      |
 
 ## Autores
 
 - [@benetesla](https://github.com/benetesla)
 
-
 ## Licença
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
 
 ## Stack utilizada
 
