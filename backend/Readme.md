@@ -54,7 +54,11 @@ EventService.java
 
 # Exemplo de consumer usando o Kafka tool:
 
-![1683131812546](image/Readme/1683131812546.png)
+
+![Captura de tela de 2023-05-02 21-55-30](https://user-images.githubusercontent.com/78994881/235984680-075c76c6-d6da-4ac7-9a27-7f9937eae5cd.png)
+![Captura de tela de 2023-05-02 22-31-30](https://user-images.githubusercontent.com/78994881/235984683-23080fdf-485a-48ee-9ffe-bce3c2fbdd3a.png)
+![Captura de tela de 2023-05-02 21-59-28](https://user-images.githubusercontent.com/78994881/235984687-ea19e4a7-d0b1-4ca0-841d-a164973f69c3.png)
+
 
 ## Referência
 
