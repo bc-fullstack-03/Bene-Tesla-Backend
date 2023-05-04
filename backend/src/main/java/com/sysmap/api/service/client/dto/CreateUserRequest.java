@@ -7,5 +7,6 @@ public class CreateUserRequest {
   public String name;
   public String email;
   public String password;
-  public Author author; 
+  public Author author;
+
 }

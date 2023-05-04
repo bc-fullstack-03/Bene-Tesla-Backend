@@ -20,4 +20,10 @@ public class PostService implements IUserPostService {
         postRepo.save(post);
         return  ResponseEntity.ok("Your post was created successfully").toString();
     }
+
+    public String updatePost(CreatePostRequest request) {
+        var post = new Post(request.title, request.body, request.author, request.category, request.tags, request.date);
+        postRepo.save(post);
+        return  ResponseEntity.ok("Your post was updated successfully").toString();
+    }
 }

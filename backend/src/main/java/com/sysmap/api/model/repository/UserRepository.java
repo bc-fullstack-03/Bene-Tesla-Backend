@@ -8,5 +8,6 @@ import com.sysmap.api.service.client.dto.CreateUserRequest;
 
 public interface UserRepository extends MongoRepository<User, UUID> {
     void save(CreateUserRequest _user);
-    Optional<User> findById(UUID id);
+    Optional<User> findByEmail(String email);    
+    void deleteById(String id);
 }

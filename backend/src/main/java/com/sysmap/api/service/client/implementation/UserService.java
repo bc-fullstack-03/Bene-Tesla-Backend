@@ -1,24 +1,21 @@
 package com.sysmap.api.service.client.implementation;
 
-import java.util.Optional;
-import java.util.UUID;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.sysmap.api.model.embedded.Author;
 import com.sysmap.api.model.entities.User;
 import com.sysmap.api.model.repository.UserRepository;
 import com.sysmap.api.service.client.IUservice;
 import com.sysmap.api.service.client.IveEventService;
 import com.sysmap.api.service.client.dto.CreateUserRequest;
-import com.sysmap.api.service.client.dto.CreateUserResponse;
+import java.util.UUID;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public final class UserService implements IUservice {
 
   @Autowired
   private UserRepository repo;
+
   @Autowired
   private IveEventService eventService;
 
@@ -34,27 +31,37 @@ public final class UserService implements IUservice {
       repo.save(user);
       eventService.send(user.getId().toString());
       return user.getId().toString();
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       return e.getMessage();
     }
   }
 
-  @Override
-  public Optional<CreateUserResponse> findById(String id) {
-    UUID uuid = UUID.fromString(id);
-    var queryUser = repo.findById(uuid);
-    var user = queryUser.map(u ->
-      new CreateUserResponse(
-        u.getId().toString(),
-        u.getName(),
-        u.getEmail(),
-        u.getPassword(),
-        u.getAuthor()
-      )
+  public User findByEmail(String email) {
+    var user = repo.findByEmail(email);
+    var response = new User(
+      user.get().getName(),
+      user.get().getEmail(),
+      user.get().getPassword(),
+      user.get().getAuthor()
     );
-    return user;
+    response.setId(user.get().getId());
+    return response;
   }
-  
+
+  public String findAll() {
+    var users = repo.findAll();
+    return users.toString();
+  }
+
+  public String deleteById(String id) {
+    UUID uuid = UUID.fromString(id);
+    try {
+      repo.deleteById(uuid);
+      return "User deleted";
+    } catch (Exception e) {
+      return e.getMessage();
+    }
+  }
+
   
 }
