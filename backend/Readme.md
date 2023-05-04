@@ -8,9 +8,8 @@ Spring Boot: Framework Java de código aberto para a criação de Microsserviço
 
 Swagger: Documentação da Api(Rest API), para acessar a API Rode o Seu docker e o projeto e se conecte ao seguinte endereço.
 
-```bash
-  http://localhost:8082/swagger-ui/swagger-ui/index.html
-```
+
+
 
 Apache Kafka: Processamento de Fluxo de dados(Mensageria).
 
@@ -22,6 +21,14 @@ Apache Kafka: Processamento de Fluxo de dados(Mensageria).
 - Geração de Tokens
 - Serviço de Mensageria
 - Comunicação backend for frontend(Conceito BFF)
+
+## Swagger
+Estamos utilizando o Swagger para fazermos a documentação da nossa API, para acessar o swagger acesse o seguinte endereço web:
+```bash
+  http://localhost:8082/swagger-ui/swagger-ui/index.html
+```
+![Captura de tela de 2023-05-03 18-33-08](https://user-images.githubusercontent.com/78994881/236108455-ac923b5d-3f32-4c23-bac5-683a5ca8453a.png)
+![Captura de tela de 2023-05-03 18-35-35](https://user-images.githubusercontent.com/78994881/236108451-878a101f-3df7-4ff8-a255-4399b3b7db1d.png)
 
 ## Apache Kafka
 
@@ -58,6 +65,11 @@ EventService.java
 ![Captura de tela de 2023-05-02 21-55-30](https://user-images.githubusercontent.com/78994881/235984680-075c76c6-d6da-4ac7-9a27-7f9937eae5cd.png)
 ![Captura de tela de 2023-05-02 22-31-30](https://user-images.githubusercontent.com/78994881/235984683-23080fdf-485a-48ee-9ffe-bce3c2fbdd3a.png)
 
+# JWT 
+Para a geração de tokens para nossos usuários estamos usando o JWT.
+
+
+![Captura de tela de 2023-05-04 00-49-16](https://user-images.githubusercontent.com/78994881/236108943-836aafc0-7256-46b6-8459-622f3b5123d1.png)
 
 ## Referência
 
