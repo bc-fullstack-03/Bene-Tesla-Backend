@@ -32,7 +32,9 @@ Estamos utilizando o Swagger para fazermos a documentação da nossa API, para a
 
 ## Apache Kafka
 
-**Conectando o sistema com o apache kafka utilizando a ferramenta Offset explorer para a visualização de dados em um ambiente gráfico,**Para consumir este serviço criamos a classe:
+Conectando o sistema com o apache kafka utilizando a ferramenta Offset explorer para a visualização de dados em um ambiente gráfico:
+
+Para consumir este serviço criamos a classe:
 
 EventService.java
 
