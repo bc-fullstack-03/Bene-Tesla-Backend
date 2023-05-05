@@ -13,13 +13,10 @@ public class AuthService implements IAuthService {
     private UserService _userService;
     @Autowired
     private JwtService _jwtService;
-
+    @Override
     public AuthenticateResponse authenticate(AuthenticateRequest request) {
         var user = _userService.findByEmail(request.email);
         if(user == null) {
-            return null;
-        }
-        if(!user.getPassword().equals(request.password)) {
             return null;
         }
         var token = _jwtService.generateToken(user.getId());

@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.sysmap.api.service.utils.ConvertDateToString;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -19,7 +21,7 @@ public class JwtService implements IJwtService{
     public String generateToken(UUID userId) {
         return Jwts
         .builder()
-        .setSubject(userId.toString())
+        .setSubject(ConvertDateToString.toString(userId))
         .setIssuedAt(new Date(System.currentTimeMillis()))
         .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) // 1 hour
         .signWith( genSinKey(),SignatureAlgorithm.HS256)
@@ -29,12 +31,20 @@ public class JwtService implements IJwtService{
         var bytes = Decoders.BASE64.decode(SECRET);
         return Keys.hmacShaKeyFor(bytes);
     }
-    public boolean isvalidToken(String token, UUID userId) {
-        var claims = Jwts.parserBuilder().setSigningKey(genSinKey()).build().parseClaimsJws(token).getBody();
+    public boolean isvalidToken(String token, String userId) {
+        var claims = Jwts
+                    .parserBuilder()
+                    .setSigningKey(genSinKey())
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
         var subject = claims.getSubject();
         var expiration = claims.getExpiration();
-        return (userId.toString().equals(subject) && !expiration.before(new Date()));
-
+        return (subject.equals(userId) && !expiration.before(new Date()));
+    }
+    public String getUserId(String token) {
+        var claims = Jwts.parserBuilder().setSigningKey(genSinKey()).build().parseClaimsJws(token).getBody();
+        return claims.getSubject();
     }
    
     
