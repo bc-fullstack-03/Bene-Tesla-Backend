@@ -4,7 +4,7 @@
 
 ---
 
-## `<img width="25px" src="https://user-images.githubusercontent.com/78994881/235503050-28fec3b1-1adc-48a2-b767-e4d560ccf1e7.png" alt="Javascript Icon" />` Backend
+## <img width="25px" src="https://user-images.githubusercontent.com/78994881/235503050-28fec3b1-1adc-48a2-b767-e4d560ccf1e7.png" alt="Javascript Icon" /> Backend
 
 ---
 
