@@ -21,27 +21,33 @@ import org.springframework.http.ResponseEntity;
 @RequestMapping("/api/v1/user")
 public class UserController extends ValidateUser {
     @Autowired
-    private IUservice _service;   
+    private IUservice _service;  
     
-    @PostMapping("/create")//http://localhost:8082/api/v1/user/create/createUser
+    @PostMapping("/create")
     public ResponseEntity<String> createUser(@RequestBody CreateUserRequest request) {
         var response = _service.createUser(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-    @DeleteMapping("/{id}")//http://localhost:8082/api/v1/user/{id}
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") String id) {
         var response = _service.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
-    @GetMapping("/{email}")//http://localhost:8082/api/v1/user/{email}
+    @GetMapping("/{email}")
     public ResponseEntity<String> getUser(@PathVariable("email") String email) {
         var response = _service.findByEmail(email);
         return ResponseEntity.status(HttpStatus.OK).body(response.toString());
     }
-    @GetMapping("/all")//http://localhost:8082/api/v1/user/all
+    @GetMapping("/all")
     public ResponseEntity<String> getAll() {
         var response = _service.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+    @GetMapping("/follow/{name}")
+        public ResponseEntity<Boolean> follow(@PathVariable("name") String name) {
+        var response = _service.follow(name);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
 
+   
 }
