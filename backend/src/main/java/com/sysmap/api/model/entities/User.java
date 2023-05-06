@@ -1,40 +1,41 @@
 package com.sysmap.api.model.entities;
 
-import com.sysmap.api.model.embedded.Author;
 import java.util.UUID;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "users")
-@Getter
-@Setter
 @Data
+@Setter
+@Getter
 public class User {
 
   @Id
-  private UUID id;
-
-  @Field
+  private UUID id;  
   private String name;
-
-  @Field
   private String email;
-
-  @Field
   private String password;
-
-  @Field
-  private Author author;
-
-  public User(String name,String email, String password, Author author) {
-    this.id = UUID.randomUUID();
-    this.name = name;
-    this.email = email;
-    this.password = password;
-    this.author = author;
+  
+  public User(String name, String email, String password) {
+      this.id = UUID.randomUUID();
+      this.name = name;
+      this.email = email;
+      this.password = password;      
   }
+
+  public static User create(User user) {
+    return new User(user.name, user.email, user.password);
+  }
+
+  public int getFollowers() {
+    return 0;
+  }
+
+public void setFollowers(int i) {
+}
+
 }

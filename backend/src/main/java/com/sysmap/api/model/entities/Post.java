@@ -1,11 +1,10 @@
 package com.sysmap.api.model.entities;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import com.sysmap.api.model.embedded.Comment;
-import com.sysmap.api.model.embedded.Like;
+import com.sysmap.api.service.embedded.Comment;
+import com.sysmap.api.service.embedded.Like;
 
 import lombok.Data;
 import lombok.Getter;
@@ -19,22 +18,22 @@ public class Post {
     private UUID id;
     private String title;
     private String body;
-    private String author;
     private String category;
     private String tags;
-    private Date date;
+   
     
    
-    public Post(String title, String body, String author, String category, String tags, Date date) {
+    public Post(String title, String body, String category, String tags) {
+        this.id = UUID.randomUUID();
         this.title = title;
         this.body = body;
-        this.author = author;
         this.category = category;
         this.tags = tags;
-        this.date = date;
-        
+       
     }   
     
+
+
     //comments post
     private List<Comment> comments = new java.util.ArrayList<>();
     public List<Comment> getComments() {

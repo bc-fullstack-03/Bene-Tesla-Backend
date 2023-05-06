@@ -6,8 +6,6 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.sysmap.api.service.utils.ConvertDateToString;
-
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -21,7 +19,7 @@ public class JwtService implements IJwtService{
     public String generateToken(UUID userId) {
         return Jwts
         .builder()
-        .setSubject(ConvertDateToString.toString(userId))
+        .setSubject(toString())
         .setIssuedAt(new Date(System.currentTimeMillis()))
         .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) // 1 hour
         .signWith( genSinKey(),SignatureAlgorithm.HS256)

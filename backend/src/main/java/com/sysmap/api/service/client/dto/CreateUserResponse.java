@@ -1,6 +1,4 @@
 package com.sysmap.api.service.client.dto;
-
-import com.sysmap.api.model.embedded.Author;
 import java.util.UUID;
 import lombok.Data;
 
@@ -9,12 +7,12 @@ public class CreateUserResponse {
   private UUID id;
   public String name;
   public String email;
-  public Author author;
+  public String password;
 
-  public CreateUserResponse(String string, String name, String email, String password, Author author) {
-    this.id = UUID.fromString(string);
+  public CreateUserResponse(String string, String name, String email, String password) {
+    this.id = UUID.randomUUID();
     this.name = name;
     this.email = email;
-    this.author = author;
+    this.password = password;
   }
 }

@@ -6,5 +6,6 @@ public interface IUservice {
    String createUser(CreateUserRequest request);
    String findAll();
    Object findByEmail(String email);
+   boolean follow(String name);
    
 }

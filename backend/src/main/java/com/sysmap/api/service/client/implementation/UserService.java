@@ -1,12 +1,12 @@
 package com.sysmap.api.service.client.implementation;
 
+import com.sysmap.api.interfaces.repositories.UserRepository;
 import com.sysmap.api.model.entities.User;
-import com.sysmap.api.model.repository.UserRepository;
 import com.sysmap.api.service.client.IUservice;
 import com.sysmap.api.service.client.dto.CreateUserRequest;
-import com.sysmap.api.service.embedded.Author;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,27 +16,23 @@ public final class UserService implements IUservice {
   @Autowired
   private UserRepository repo;
 
-  //private IveEventService eventService;
   @Autowired
   private PasswordEncoder passwordEncoder;
 
   public String createUser(CreateUserRequest request) {
-    var author = new Author(request.getAuthor());
-    var user = new User(request.getEmail(), author);
-    if (repo.findByEmail(request.getEmail()).isPresent()) {
-      return "User already exists";
-    }
-    var hash = passwordEncoder.encode(request.password);
-    user.getAuthor().setPassword(hash);
+    var user = new User(request.getName(), request.getEmail(),  request.getPassword());
+    var hash = passwordEncoder.encode(user.getPassword());
+    user.setPassword(hash);
     repo.save(user);
-    return user.getId().toString();
+    return ResponseEntity.ok("User created successfully").toString();
   }
 
   public User findByEmail(String email) {
-    var user = repo.findByEmail(email);
-    var response = new User(user.get().getEmail(), user.get().getAuthor());
-    response.setId(user.get().getId());
-    return response;
+    var query = repo.findByEmail(email);
+    if (query.isPresent()) {
+      return query.get();
+    }
+    return null;
   }
 
   public String findAll() {
@@ -54,14 +50,11 @@ public final class UserService implements IUservice {
     }
   }
 
-  public boolean follow(String id, String idToFollow) {
-    UUID uuid = UUID.fromString(id);
-    UUID uuidToFollow = UUID.fromString(idToFollow);
-    var user = repo.findById(uuid);
-    var userToFollow = repo.findById(uuidToFollow);
-    if (user.isPresent() && userToFollow.isPresent()) {
-      user.get().getAuthor().follow(userToFollow.get().getAuthor());
-      repo.save(user.get());
+  public boolean follow(String name) {
+    var user = findByEmail(name);
+    if (user != null) {
+      user.setFollowers(user.getFollowers() + 1);
+      repo.save(user);
       return true;
     }
     return false;

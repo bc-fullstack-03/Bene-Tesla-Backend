@@ -1,6 +1,5 @@
 package com.sysmap.api.service.post.dto;
 
-import java.util.Date;
 import java.util.UUID;
 
 import lombok.Data;
@@ -8,11 +7,19 @@ import lombok.Data;
 @Data
 public class CreatePostResponse {
     private UUID id;
-    public String title;
-    public String body;
-    public String author;
-    public String category;
-    public String tags;
-    public Date date;    
+    private String title;
+    private String body;
+    private String category;
+    private String tags;
    
+    
+    public CreatePostResponse(UUID id, String title, String body, String category, String tags) {
+        this.id = UUID.randomUUID();
+        this.title = title;
+        this.body = body;
+        this.category = category;
+        this.tags = tags;
+        
+    }
+
 }
