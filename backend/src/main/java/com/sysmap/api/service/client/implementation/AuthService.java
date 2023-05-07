@@ -3,10 +3,10 @@ package com.sysmap.api.service.client.implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sysmap.api.service.client.authentication.IAuthService;
 import com.sysmap.api.service.client.dto.AuthenticateRequest;
 import com.sysmap.api.service.client.dto.AuthenticateResponse;
-import com.sysmap.api.service.client.security.JwtService;
+import com.sysmap.api.service.security.JwtService;
+import com.sysmap.api.service.security.authentication.IAuthService;
 @Service
 public class AuthService implements IAuthService {
     @Autowired
