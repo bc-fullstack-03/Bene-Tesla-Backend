@@ -14,6 +14,12 @@
 
 - [@benetesla](https://github.com/benetesla)
 
+
+## 🔗 Contact
+[![portfolio](https://img.shields.io/badge/website-000000?style=for-the-badge&logo=About.me&logoColor=white)](https://bene-teslav1.vercel.app/)
+[![Whatsapp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://api.whatsapp.com/send?phone=5519999528951)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:benevaniosantos930@gmail.com?subject=&body=)
+
 ## *Licença*
 
 [MIT](https://choosealicense.com/licenses/mit/)
