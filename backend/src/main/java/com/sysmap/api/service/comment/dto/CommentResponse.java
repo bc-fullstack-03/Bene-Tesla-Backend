@@ -3,8 +3,8 @@ package com.sysmap.api.service.comment.dto;
 import java.util.List;
 import java.util.UUID;
 
-import com.sysmap.api.service.embedded.Comment;
-import com.sysmap.api.service.embedded.Like;
+import com.sysmap.api.domain.embedded.Comment;
+import com.sysmap.api.domain.embedded.Like;
 
 import lombok.Data;
 
