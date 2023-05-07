@@ -1,8 +1,7 @@
 package com.sysmap.api.controller;
-import com.sysmap.api.model.entities.Post;
+import com.sysmap.api.domain.model.Post;
 import com.sysmap.api.service.post.IUserPostService;
 import com.sysmap.api.service.post.dto.CreatePostRequest;
-import com.sysmap.api.service.post.dto.CreatePostResponse;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 
-
 @RestController
 @RequestMapping("/api/v1")
 public class PostController {
@@ -34,8 +32,8 @@ public class PostController {
     return ResponseEntity.status(HttpStatus.OK).body(response);
   }
   @DeleteMapping("/post/delete")
-  public ResponseEntity<String> deletePost(String postId) throws Exception {
-    postService.deletePost(postId);
+  public ResponseEntity<String> deletePost(String title) throws Exception {
+    postService.deletePost(title);
     return ResponseEntity.status(HttpStatus.OK).body("Post deleted");
   }
   @PutMapping("/post/update")
@@ -43,10 +41,11 @@ public class PostController {
     postService.updatePost(postId, dataToUpdate);
     return ResponseEntity.status(HttpStatus.OK).body("Post updated");
   }
-  @GetMapping("/posts/list/user")
-  public ResponseEntity<List<Post>> findPosts(CreatePostResponse response) {
-    var resp= postService.findPosts(response);
-    return ResponseEntity.status(HttpStatus.OK).body(resp);
+  
+  @GetMapping("/listAllPosts")
+  public ResponseEntity<Object>  findPosts(){
+    List<Post> posts = postService.findPosts();
+    return ResponseEntity.status(HttpStatus.OK).body(posts);
   }
   
 }
