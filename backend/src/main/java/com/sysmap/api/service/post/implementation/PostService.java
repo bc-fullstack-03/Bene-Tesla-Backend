@@ -4,13 +4,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sysmap.api.interfaces.repositories.PostRepository;
-import com.sysmap.api.model.entities.Post;
+import com.sysmap.api.domain.embedded.Comment;
+import com.sysmap.api.domain.model.Post;
+import com.sysmap.api.domain.repo.PostRepository;
 import com.sysmap.api.service.comment.dto.CommentRequest;
-import com.sysmap.api.service.embedded.Comment;
 import com.sysmap.api.service.post.IUserPostService;
 import com.sysmap.api.service.post.dto.CreatePostRequest;
-import com.sysmap.api.service.post.dto.CreatePostResponse;
 @Service
 public class PostService implements IUserPostService {
     @Autowired
@@ -21,21 +20,20 @@ public class PostService implements IUserPostService {
             return post.getId().toString();
     } 
    
+    
+    //retorna todos os posts
     @Override
-    public List<Post> findPosts(CreatePostResponse response) {
+    public List<Post> findPosts() {
         return postRepo.findAll();
     }
 
          
     @Override
-    public void deletePost(String postId) throws Exception {
-        var post = postRepo.findById(postId);
-        if(post.isPresent()) {
-            postRepo.delete(post.get());
-        }else {
-            throw new Exception("Post not found");
-        }
+    //deleta pelo titulo do post
+    public void deletePost(String title) {
+        postRepo.deleteByTitle(title);
     }
+    
     @Override
     public void saveCommentToList(Comment comment, String postId) {
         var post = postRepo.findById(postId);
@@ -58,6 +56,7 @@ public class PostService implements IUserPostService {
         }
     }
     @Override
+    //atualizar o post pelo titulo
     public void updatePost(String postId, CreatePostRequest dataToUpdate) throws Exception {
         var post = postRepo.findById(postId);
         if(post.isPresent()) {
@@ -70,6 +69,7 @@ public class PostService implements IUserPostService {
             throw new Exception("Post not found");
         }
     }
+
     @Override
     public void deleteCommentToPost(String postId, String commentId) throws Exception {
 
