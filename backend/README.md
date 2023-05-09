@@ -28,6 +28,14 @@ para rodar a aplicaçao dentro do docker container execute o seguinte comando:
 cd backend
 docker compose up -d
 ```
+
+Caso a validação de algum erro(e vai ocorrer),  Comente a classe Authenticate Filter remova a validação crie um container mongodb com o seguinte comando.
+```bash
+docker run --name demo_mongo -d mongo:latest
+```
+Apos a realização deste procedimento se conect com o swagger.
+
+
 ## Swagger
 Estamos utilizando o Swagger para fazermos a documentação da nossa API, para acessar o swagger acesse o seguinte endereço web:
 ```bash
