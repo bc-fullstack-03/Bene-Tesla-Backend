@@ -22,13 +22,10 @@ public class AwsService {
 
         try {
             var fileConverted = convertMultiPartToFile(multipartFile);
-
             amazonS3.putObject(new PutObjectRequest("demo-bucket", fileName, fileConverted).withCannedAcl(CannedAccessControlList.PublicRead));
 
             fileUri = "http://s3.localhost.localstack.cloud:4566" + "/" + "demo-bucket" + "/" + fileName;
-
             fileConverted.delete();
-
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -38,12 +35,9 @@ public class AwsService {
 
     private File convertMultiPartToFile(MultipartFile file) throws IOException {
         var convFile = new File(Objects.requireNonNull(file.getOriginalFilename()));
-
         var fos = new FileOutputStream(convFile);
-
         fos.write(file.getBytes());
         fos.close();
-
         return convFile;
     }
 }

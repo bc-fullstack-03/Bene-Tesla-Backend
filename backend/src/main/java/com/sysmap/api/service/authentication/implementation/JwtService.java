@@ -14,9 +14,9 @@ import com.sysmap.api.service.authentication.IJwtService;
 @Service
 public class JwtService implements IJwtService {
 
-  private final String SECRET ="3777217A25432646294A404E635266556A586E3272357538782F413F4428472D";
-  //6 horas
-  private final long EXPIRATION_TIME = 18000000; //6 horas
+  private final String SECRET ="66546A576E5A7234753778214125432A462D4A614E645267556B587032733576";
+  
+  private final long EXPIRATION_TIME = 28000000; 
 
   public String generateToken(UUID userId) {
     return Jwts
@@ -24,7 +24,7 @@ public class JwtService implements IJwtService {
       .setSubject(userId.toString())
       .claim(SECRET, userId)
       .setIssuedAt(new Date(System.currentTimeMillis()))
-      .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) // 1 hour
+      .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)) 
       .signWith(genSinKey(), SignatureAlgorithm.HS256)
       .compact();
   }

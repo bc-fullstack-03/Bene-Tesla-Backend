@@ -5,7 +5,7 @@ import com.sysmap.api.domain.repo.UserRepository;
 import com.sysmap.api.service.aws.FileStorageService;
 import com.sysmap.api.service.client.IUservice;
 import com.sysmap.api.service.client.dto.CreateUserRequest;
-
+import com.sysmap.api.service.client.dto.CreateUserResponse;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +30,7 @@ public final class UserService implements IUservice {
     var validateReggexEmail =
       user.getEmail().contains("@") && user.getEmail().contains(".com");
     var users = new User(user.getName(), user.getEmail(), user.getPassword());
-    if (findByEmail(user.getEmail()) != null) {
+    if (findUserByEmail(user.getEmail()) != null) {
       return ResponseEntity.ok("User already exists").toString();
     }
     var hash = passwordEncoder.encode(user.getPassword());
@@ -58,27 +58,38 @@ public final class UserService implements IUservice {
     return repo.findAll().toString();
   }
 
-  public User getUserById(UUID id) {
-    return repo.findUserById(id).get();
-  }
-
-  public User findByEmail(String email) {
-    var query = repo.findByEmail(email);
-    if (query.isPresent()) {
-      return query.get();
-    }
-    return null;
-  }
-  
-  public User getUser(String email) {
-    return repo.findByEmail(email).get();
-}
   public boolean follow(String email) {
     var user = repo.findByEmail(email);
     if (user == null) {
       return false;
     }
     return repo.save(user.get()) != null;
+  }
+
+  public ResponseEntity<?> delete(String email) {
+    var user = repo.findByEmail(email);
+    if (user == null) {
+      return ResponseEntity.ok("User not found");
+    }
+    repo.delete(user.get());
+    return ResponseEntity.ok("User deleted");
+  }
+
+  public CreateUserResponse findUserByEmail(String email) {
+    var user = repo.findByEmail(email).get();
+
+    var response = new CreateUserResponse(
+      user.getId(),
+      user.getName(),
+      user.getEmail(),
+      user.getPhotoUri()
+    );
+
+    return response;
+  }
+
+  public User getUser(String email) {
+    return repo.findByEmail(email).get();
   }
 
   public void uploadPhotoProfile(MultipartFile photo) throws Exception {
@@ -108,4 +119,15 @@ public final class UserService implements IUservice {
     user.setPhotoUri(photoUri);
     repo.save(user);
   }
+
+  @Override
+  public User getUserById(UUID id) {
+    return repo.findById(id).get();
+  }
+
+  public User getUserByEmail(String email){
+    return repo.findByEmail(email).get();
+  }
+
+  
 }

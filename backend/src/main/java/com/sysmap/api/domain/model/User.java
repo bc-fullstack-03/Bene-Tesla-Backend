@@ -34,7 +34,7 @@ public class User {
   }
 
   public int getFollowers() {
-    return 0;
+    return +1;
   }
 
   public void setFollowers(int i) {

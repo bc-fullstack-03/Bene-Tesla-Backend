@@ -1,5 +1,34 @@
 version: '3'
 services:
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2182
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 2182:2182
+
+  kafka:
+    depends_on:
+      - zookeeper
+    ports:
+      - 9092:9092
+    image: confluentinc/cp-kafka:latest
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2182
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+
+  mongodb:
+    image: mongo
+    container_name: demo_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./tmp/mongodb:/data/db
   localstack:
     image: localstack/localstack
     container_name: localstack_demo
@@ -14,3 +43,10 @@ services:
     volumes:
       - ./tmp/localstack:/tmp/localstack
       - /var/run/docker.sock:/var/run/docker.sock
+
+  backend:
+      image: benevavanio/demo-backend:latest
+      build: .
+      container_name: demo_backend
+      ports:
+        - "8082:8082"    

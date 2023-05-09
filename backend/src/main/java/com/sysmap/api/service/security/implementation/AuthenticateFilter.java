@@ -1,9 +1,8 @@
+
 package com.sysmap.api.service.security.implementation;
-
-/*package com.sysmap.api.service.authentication.implementation;  import jakarta.servlet.FilterChain;
-
 import com.sysmap.api.service.authentication.IJwtService;
 import com.sysmap.api.service.client.IUservice;
+import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -44,17 +43,16 @@ public class AuthenticateFilter extends OncePerRequestFilter {
         var token = request.getHeader("Authorization");
         var userId = request.getHeader("RequestedBy");
 
-         if (token == null || userId == null) {
-            response.getWriter().write("Tamo travando aquis");
+        if (token == null || userId == null || !token.startsWith("Bearer ")) {
+            response.getWriter().write("User not authenticated!");
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             return;
         }
-    
 
         boolean isValidToken = false;
 
         try {
-            isValidToken = _jwtService.isValidToken(token , userId);
+            isValidToken = _jwtService.isValidToken(token.substring(7), userId);
         } catch (Exception e) {
             response.getWriter().write(e.getMessage());
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
@@ -81,6 +79,3 @@ public class AuthenticateFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 }
- * 
- */
-

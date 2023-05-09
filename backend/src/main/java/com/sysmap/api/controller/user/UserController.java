@@ -3,11 +3,7 @@ package com.sysmap.api.controller.user;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.sysmap.api.service.authentication.IJwtService;
 import com.sysmap.api.service.client.IUservice;
 import com.sysmap.api.service.client.dto.CreateUserRequest;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,32 +24,25 @@ public class UserController {
   @Autowired
   private IUservice _service;
 
-  @Autowired
-  private IJwtService _jwtService;
-
-  @PostMapping("/create")//http://localhost:8082/api/v1/user/create
+  @PostMapping("/create")
     public ResponseEntity<String> createUser(@RequestBody CreateUserRequest user) {     
-      
         var response = _service.createUser(user);
         return ResponseEntity.status(HttpStatus.OK).body("User already created" + response);
     }
 
-  @PostMapping("/photo/upload") //http://localhost:8082/api/v1/user/photo/upload
-  public ResponseEntity uploadPhotoProfile(
-    @RequestParam("photo") MultipartFile photo
-  ) {
+  @PostMapping("/photo/upload")
+  public ResponseEntity<String> uploadPhotoProfile(@RequestParam("photo") MultipartFile photo) throws Exception {
     try {
       _service.uploadPhotoProfile(photo);
-
-      return new ResponseEntity(HttpStatus.OK);
+      return ResponseEntity.status(HttpStatus.OK).body("Photo uploaded");
     } catch (Exception e) {
-      return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
   }
 
   @GetMapping("/{email}")
   public ResponseEntity<Object> getUser(@PathVariable("email") String email) {
-    var response = _service.findByEmail(email);
+    var response = _service.findUserByEmail(email);
     return ResponseEntity.status(HttpStatus.OK).body(response);
   }
 
@@ -65,8 +54,12 @@ public class UserController {
     var response = _service.updateUser(id, request);
     return ResponseEntity.status(HttpStatus.OK).body(response);
   }
-
-  @GetMapping("/all") //http://localhost:8082/api/v1/user/all
+  @DeleteMapping("/{id}")
+  public ResponseEntity<?> deleteUser(@PathVariable("id") String id) {
+    var response = _service.delete(id);
+    return ResponseEntity.status(HttpStatus.OK).body(response);
+  }
+  @GetMapping("/all") 
   public ResponseEntity<String> getAll() {
     var response = _service.findAll();
     return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -76,17 +69,5 @@ public class UserController {
   public ResponseEntity<Boolean> follow(@PathVariable("name") String name) {
     var response = _service.follow(name);
     return ResponseEntity.status(HttpStatus.OK).body(response);
-  }
-  /*
-   *  public String getToken(){
-    var request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-    var token = request.getHeader("Authorization");
-    return token.substring(7);
-   }
-   public String getUserId(){
-   return((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getHeader("userId");
-   }
-   */
- 
-  
+  }  
 }

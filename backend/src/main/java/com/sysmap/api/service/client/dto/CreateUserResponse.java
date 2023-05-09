@@ -4,15 +4,15 @@ import lombok.Data;
 
 @Data
 public class CreateUserResponse {
-  private UUID id;
+  public UUID id;
   public String name;
   public String email;
-  public String password;
+  public String photoUri;
 
-  public CreateUserResponse(String string, String name, String email, String password) {
-    this.id = UUID.randomUUID();
-    this.name = name;
-    this.email = email;
-    this.password = password;
+  public CreateUserResponse(UUID id, String name, String email, String photoUri) {
+      this.id = id;
+      this.name = name;
+      this.email = email;
+      this.photoUri = photoUri;
   }
-}
+  }
