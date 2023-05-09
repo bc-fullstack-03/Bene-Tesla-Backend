@@ -2,7 +2,6 @@ package com.sysmap.api.service.comment.events.implementation;
 
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sysmap.api.domain.embedded.Comment;
@@ -12,7 +11,7 @@ import com.sysmap.api.service.comment.events.EventService;
 
 @Service
 public class CommentService  implements IcommentService{
-  @Autowired
+  
   private EventService eventService;
   @Override
   public String createCommentToPost(UUID postId, CommentRequest request) {
