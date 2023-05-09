@@ -20,6 +20,7 @@ public class User {
   private String name;
   private String email;
   private String password;
+  private String photoUri;
 
   public User(String name, String email, String password) {
     this.id = UUID.randomUUID();
