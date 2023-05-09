@@ -26,7 +26,7 @@ Apache Kafka: Processamento de Fluxo de dados(Mensageria).
 para rodar a aplicaçao dentro do docker container execute o seguinte comando:
 ```bash
 cd backend
-docker compose up -docker compose up -d
+docker compose up -d
 ```
 ## Swagger
 Estamos utilizando o Swagger para fazermos a documentação da nossa API, para acessar o swagger acesse o seguinte endereço web:
