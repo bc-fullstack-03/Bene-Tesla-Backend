@@ -128,7 +128,41 @@ Construindo as rotas da api
 
 | Parâmetro                                   | Tipo       | Descrição |
 | :------------------------------------------- | :--------- | :---------- |
-| `http://localhost:8082/api/v1/user/create` | `string` | ** **.      |
+| `http://localhost:8082/api/v1/user/create` | `string` | **Criação de usuarios**.|
+
+```http
+  GET 
+```
+
+| Parâmetro                                   | Tipo       | Descrição |
+| :------------------------------------------- | :--------- | :---------- |
+| `http://localhost:8082//api/v1/user/all` | `string` | **Retorna  todos os usuarios no sistema**.|
+
+```http
+  PUT
+```
+
+| Parâmetro                                   | Tipo       | Descrição |
+| :------------------------------------------- | :--------- | :---------- |
+| `http://localhost:8082//api/v1/user/{id}` | `string` | **Atualizar o usuario pelo ID**.|
+
+```http
+  DELETE
+```
+
+| Parâmetro                                   | Tipo       | Descrição |
+| :------------------------------------------- | :--------- | :---------- |
+| `http://localhost:8082//api/v1/user/{id}` | `string` | **DELETA O USUARIO PELO ID**.|
+
+
+```http
+  GET 
+```
+
+
+| Parâmetro                                   | Tipo       | Descrição |
+| :------------------------------------------- | :--------- | :---------- |
+| `http://localhost:8082//api/v1/user/{email}` | `string` | **Retorna o usuario pelo email**.|
 
 ## Autores
 
