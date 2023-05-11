@@ -7,7 +7,7 @@
 ---
 
 
-## <img width="25px" src="https://user-images.githubusercontent.com/78994881/235503050-28fec3b1-1adc-48a2-b767-e4d560ccf1e7.png" alt="Javascript Icon" /> Frontend
+## <img width="25px" src="https://github.com/bc-fullstack-03/Bene-Tesla-Backend/assets/78994881/e2a78eb9-4972-44c1-bfba-fe4829a654c7" alt="Javascript Icon" />  Frontend
 
 ***Projeto Frontend - [frontend](https://github.com/bc-fullstack-03/Bene-Tesla-Frontend)***
 
